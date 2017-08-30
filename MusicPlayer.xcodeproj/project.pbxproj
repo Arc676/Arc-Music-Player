@@ -14,6 +14,7 @@
 		525099381BC3BE4300C508E8 /* MusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525099371BC3BE4300C508E8 /* MusicPlayerTests.swift */; };
 		525099431BC3BE4300C508E8 /* MusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525099421BC3BE4300C508E8 /* MusicPlayerUITests.swift */; };
 		52F3A9D11BC7BE0B008A1243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3A9D01BC7BE0B008A1243 /* Application.swift */; };
+		71BBBBCA1F57054B005A4257 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 71BBBBC91F57054B005A4257 /* Credits.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		525099221BC3BE4200C508E8 /* MusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		525099221BC3BE4200C508E8 /* ArcMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArcMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525099251BC3BE4200C508E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525099271BC3BE4200C508E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		525099291BC3BE4200C508E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +51,7 @@
 		52F3A9D01BC7BE0B008A1243 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		71BBBBC51F56FC12005A4257 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		71BBBBC61F56FC12005A4257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		71BBBBC91F57054B005A4257 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +93,7 @@
 		525099231BC3BE4200C508E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				525099221BC3BE4200C508E8 /* MusicPlayer.app */,
+				525099221BC3BE4200C508E8 /* ArcMusicPlayer.app */,
 				525099331BC3BE4300C508E8 /* MusicPlayerTests.xctest */,
 				5250993E1BC3BE4300C508E8 /* MusicPlayerUITests.xctest */,
 			);
@@ -134,6 +136,7 @@
 			children = (
 				71BBBBC51F56FC12005A4257 /* LICENSE */,
 				71BBBBC61F56FC12005A4257 /* README.md */,
+				71BBBBC91F57054B005A4257 /* Credits.rtf */,
 			);
 			name = Meta;
 			sourceTree = "<group>";
@@ -141,9 +144,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		525099211BC3BE4200C508E8 /* MusicPlayer */ = {
+		525099211BC3BE4200C508E8 /* ArcMusicPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 525099471BC3BE4300C508E8 /* Build configuration list for PBXNativeTarget "MusicPlayer" */;
+			buildConfigurationList = 525099471BC3BE4300C508E8 /* Build configuration list for PBXNativeTarget "ArcMusicPlayer" */;
 			buildPhases = (
 				5250991E1BC3BE4200C508E8 /* Sources */,
 				5250991F1BC3BE4200C508E8 /* Frameworks */,
@@ -153,9 +156,9 @@
 			);
 			dependencies = (
 			);
-			name = MusicPlayer;
+			name = ArcMusicPlayer;
 			productName = MusicPlayer;
-			productReference = 525099221BC3BE4200C508E8 /* MusicPlayer.app */;
+			productReference = 525099221BC3BE4200C508E8 /* ArcMusicPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		525099321BC3BE4300C508E8 /* MusicPlayerTests */ = {
@@ -233,7 +236,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				525099211BC3BE4200C508E8 /* MusicPlayer */,
+				525099211BC3BE4200C508E8 /* ArcMusicPlayer */,
 				525099321BC3BE4300C508E8 /* MusicPlayerTests */,
 				5250993D1BC3BE4300C508E8 /* MusicPlayerUITests */,
 			);
@@ -246,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5250992A1BC3BE4200C508E8 /* Assets.xcassets in Resources */,
+				71BBBBCA1F57054B005A4257 /* Credits.rtf in Resources */,
 				5250992D1BC3BE4200C508E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,12 +302,12 @@
 /* Begin PBXTargetDependency section */
 		525099351BC3BE4300C508E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 525099211BC3BE4200C508E8 /* MusicPlayer */;
+			target = 525099211BC3BE4200C508E8 /* ArcMusicPlayer */;
 			targetProxy = 525099341BC3BE4300C508E8 /* PBXContainerItemProxy */;
 		};
 		525099401BC3BE4300C508E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 525099211BC3BE4200C508E8 /* MusicPlayer */;
+			target = 525099211BC3BE4200C508E8 /* ArcMusicPlayer */;
 			targetProxy = 5250993F1BC3BE4300C508E8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -504,7 +508,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		525099471BC3BE4300C508E8 /* Build configuration list for PBXNativeTarget "MusicPlayer" */ = {
+		525099471BC3BE4300C508E8 /* Build configuration list for PBXNativeTarget "ArcMusicPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				525099481BC3BE4300C508E8 /* Debug */,
