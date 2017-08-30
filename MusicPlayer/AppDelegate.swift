@@ -11,17 +11,17 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     
-    func mediaKeyPressed(functionKey: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName(
-            "MediaKeyPressed",
+    @objc func mediaKeyPressed(_ functionKey: String) {
+        NotificationCenter.default.post(
+            name: Notification.Name(rawValue: "MediaKeyPressed"),
             object: self,
             userInfo: ["fKey":functionKey]
         )
