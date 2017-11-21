@@ -267,13 +267,14 @@ class ViewController: NSViewController, NSSoundDelegate {
 		panel.allowsMultipleSelection = true
 		panel.allowedFileTypes = NSSound.soundUnfilteredTypes
 		panel.allowsOtherFileTypes = false
+		let extensions = ["mp4","mp3","m4a","aiff","wav"]
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			let fm = FileManager()
 			for url in panel.urls {
 				if url.hasDirectoryPath {
 					for file in fm.enumerator(at: url, includingPropertiesForKeys: [])! {
 						let fileURL = file as! URL
-						if !fileURL.hasDirectoryPath {
+						if fileURL.isFileURL && extensions.contains(fileURL.pathExtension) {
 							playlist!.append(fileURL)
 						}
 					}
