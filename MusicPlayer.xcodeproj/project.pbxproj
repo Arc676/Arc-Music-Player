@@ -11,8 +11,6 @@
 		525099281BC3BE4200C508E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525099271BC3BE4200C508E8 /* ViewController.swift */; };
 		5250992A1BC3BE4200C508E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 525099291BC3BE4200C508E8 /* Assets.xcassets */; };
 		5250992D1BC3BE4200C508E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5250992B1BC3BE4200C508E8 /* Main.storyboard */; };
-		525099381BC3BE4300C508E8 /* MusicPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525099371BC3BE4300C508E8 /* MusicPlayerTests.swift */; };
-		525099431BC3BE4300C508E8 /* MusicPlayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525099421BC3BE4300C508E8 /* MusicPlayerUITests.swift */; };
 		52F3A9D11BC7BE0B008A1243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3A9D01BC7BE0B008A1243 /* Application.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,11 +39,7 @@
 		5250992C1BC3BE4200C508E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5250992E1BC3BE4300C508E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525099331BC3BE4300C508E8 /* MusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		525099371BC3BE4300C508E8 /* MusicPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerTests.swift; sourceTree = "<group>"; };
-		525099391BC3BE4300C508E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5250993E1BC3BE4300C508E8 /* MusicPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		525099421BC3BE4300C508E8 /* MusicPlayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerUITests.swift; sourceTree = "<group>"; };
-		525099441BC3BE4300C508E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525099511BC3BF5A00C508E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		52F3A9D01BC7BE0B008A1243 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,8 +73,6 @@
 			isa = PBXGroup;
 			children = (
 				525099241BC3BE4200C508E8 /* MusicPlayer */,
-				525099361BC3BE4300C508E8 /* MusicPlayerTests */,
-				525099411BC3BE4300C508E8 /* MusicPlayerUITests */,
 				525099231BC3BE4200C508E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,24 +98,6 @@
 				5250992E1BC3BE4300C508E8 /* Info.plist */,
 			);
 			path = MusicPlayer;
-			sourceTree = "<group>";
-		};
-		525099361BC3BE4300C508E8 /* MusicPlayerTests */ = {
-			isa = PBXGroup;
-			children = (
-				525099371BC3BE4300C508E8 /* MusicPlayerTests.swift */,
-				525099391BC3BE4300C508E8 /* Info.plist */,
-			);
-			path = MusicPlayerTests;
-			sourceTree = "<group>";
-		};
-		525099411BC3BE4300C508E8 /* MusicPlayerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				525099421BC3BE4300C508E8 /* MusicPlayerUITests.swift */,
-				525099441BC3BE4300C508E8 /* Info.plist */,
-			);
-			path = MusicPlayerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525099381BC3BE4300C508E8 /* MusicPlayerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +247,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525099431BC3BE4300C508E8 /* MusicPlayerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
