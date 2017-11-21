@@ -263,13 +263,20 @@ class ViewController: NSViewController, NSSoundDelegate {
 	//song loading
 	@IBAction func loadSong(_ sender: AnyObject) {
 		let panel = NSOpenPanel()
-		panel.canChooseDirectories = false
+		panel.canChooseDirectories = true
 		panel.allowsMultipleSelection = true
 		panel.allowedFileTypes = NSSound.soundUnfilteredTypes
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
+			let fm = FileManager()
 			for url in panel.urls {
-				playlist!.append(url)
+				if url.hasDirectoryPath {
+					for file in fm.enumerator(at: url, includingPropertiesForKeys: [])! {
+						Swift.print(file)
+					}
+				} else {
+					playlist!.append(url)
+				}
 			}
 			currentSongIndex = 0
 		}
