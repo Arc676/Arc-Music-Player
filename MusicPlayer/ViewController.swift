@@ -272,7 +272,10 @@ class ViewController: NSViewController, NSSoundDelegate {
 			for url in panel.urls {
 				if url.hasDirectoryPath {
 					for file in fm.enumerator(at: url, includingPropertiesForKeys: [])! {
-						Swift.print(file)
+						let fileURL = file as! URL
+						if !fileURL.hasDirectoryPath {
+							playlist!.append(fileURL)
+						}
 					}
 				} else {
 					playlist!.append(url)
