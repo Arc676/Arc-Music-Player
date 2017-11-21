@@ -54,10 +54,10 @@ class ViewController: NSViewController, NSSoundDelegate {
 		NotificationCenter.default.addObserver(self,
 		                                       selector: #selector(mediaKeyPressed(_:)),
 		                                       name: NSNotification.Name("MediaKeyPressed"),
-		                                       object: NSApplication.shared().delegate as! AppDelegate)
+		                                       object: NSApplication.shared.delegate as! AppDelegate)
 	}
 
-	func mediaKeyPressed(_ notif: Notification) {
+	@objc func mediaKeyPressed(_ notif: Notification) {
 		let fKey: String = notif.userInfo!["fKey"]! as! String
 		if fKey == "F7" {
 			prevSong(NSNull())
@@ -96,7 +96,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		nextSong(NSNull())
 	}
 
-	func updateTimeData(_ timer: Timer) {
+	@objc func updateTimeData(_ timer: Timer) {
 		if song == nil {
 			return
 		}
@@ -265,9 +265,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		let panel = NSOpenPanel()
 		panel.canChooseDirectories = false
 		panel.allowsMultipleSelection = true
-		panel.allowedFileTypes = NSSound.soundUnfilteredTypes()
+		panel.allowedFileTypes = NSSound.soundUnfilteredTypes
 		panel.allowsOtherFileTypes = false
-		if panel.runModal() == NSFileHandlingPanelOKButton {
+		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
 				playlist!.append(url)
 			}
@@ -282,7 +282,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		panel.allowsMultipleSelection = true
 		panel.allowedFileTypes = ["plist"]
 		panel.allowsOtherFileTypes = false
-		if panel.runModal() == NSFileHandlingPanelOKButton {
+		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
 				playlist!.append(url)
 			}
@@ -294,7 +294,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		let panel = NSSavePanel()
 		panel.allowedFileTypes = ["plist"]
 		panel.allowsOtherFileTypes = false
-		if panel.runModal() == NSFileHandlingPanelOKButton {
+		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			let paths = NSMutableArray()
 			for url in playlist! {
 				paths.add(url.absoluteString)
