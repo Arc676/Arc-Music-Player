@@ -295,7 +295,11 @@ class ViewController: NSViewController, NSSoundDelegate {
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
-				playlist!.append(url)
+				let array = NSArray(contentsOf: url)!
+				for item in array {
+					let songurl = item as! String
+					playlist!.append(URL(string: songurl)!)
+				}
 			}
 			updatePlaylist()
 		}
