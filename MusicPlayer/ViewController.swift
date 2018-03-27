@@ -52,9 +52,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		songProgress.minValue = 0
 		self.view.window?.title = "Arc Music Player"
 		NotificationCenter.default.addObserver(self,
-		                                       selector: #selector(mediaKeyPressed(_:)),
-		                                       name: NSNotification.Name("MediaKeyPressed"),
-		                                       object: NSApplication.shared.delegate as! AppDelegate)
+											   selector: #selector(mediaKeyPressed(_:)),
+											   name: NSNotification.Name("MediaKeyPressed"),
+											   object: NSApplication.shared.delegate as! AppDelegate)
 	}
 
 	@objc func mediaKeyPressed(_ notif: Notification) {
@@ -188,7 +188,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		stopUpTimer()
 		song.currentTime = sender.doubleValue
 		startUpTimer()
-		song.resume()
+		if isPlaying {
+			song.resume()
+		}
 	}
 
 	@IBAction func playPause(_ sender: AnyObject) {
@@ -199,7 +201,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 			isPlaying = false
 			song.pause()
 			stopUpTimer()
-		}else{
+		} else {
 			isPlaying = true
 			if !song.play() {
 				song.resume()
