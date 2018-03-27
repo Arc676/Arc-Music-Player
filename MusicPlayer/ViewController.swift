@@ -216,6 +216,11 @@ class ViewController: NSViewController, NSSoundDelegate {
 		if playlist!.count <= 0 {
 			return
 		}
+		if song.currentTime < 10 {
+			song.currentTime = 0
+			playSong()
+			return
+		}
 		if shuffleSongs.integerValue == 0 {
 			currentSongIndex -= 1
 			if currentSongIndex < 0 {
