@@ -14,3 +14,7 @@ Arc Music Player includes just the most basic playback commands:
 - Saving/loading/clearing song list
 - Shuffle
 - Repeat on song or whole list
+
+### Legal
+
+Project available under GPLv3 except linking Apple libraries is allowed to the extent to which this is necessary for compilation. See `LICENSE` for full GPL text.

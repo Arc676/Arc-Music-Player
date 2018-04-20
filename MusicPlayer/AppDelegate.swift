@@ -4,7 +4,7 @@
 //
 //  Created by Alessandro Vinciguerra on 10/6/15.
 //	<alesvinciguerra@gmail.com>
-//Copyright (C) 2015-7 Arc676/Alessandro Vinciguerra
+//Copyright (C) 2015-8 Arc676/Alessandro Vinciguerra
 
 //This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
@@ -22,14 +22,6 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
     
     @objc func mediaKeyPressed(_ functionKey: String) {
         NotificationCenter.default.post(
