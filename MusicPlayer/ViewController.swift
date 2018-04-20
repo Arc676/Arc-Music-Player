@@ -302,11 +302,14 @@ class ViewController: NSViewController, NSSoundDelegate {
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
-				let array = NSArray(contentsOf: url)!
-				for item in array {
+				let data = NSDictionary(contentsOf: url) as! [String : Any]
+				for item in (data["playlist"] as! NSArray) {
 					let songurl = item as! String
 					playlist!.append(URL(string: songurl)!)
 				}
+				shuffleSongs.integerValue = data["shuffle"] as! Int
+				repeatMode.selectSegment(withTag: (data["repeat"] as! Int))
+				showFullPath.integerValue = data["showPaths"] as! Int
 			}
 			updatePlaylist()
 		}
@@ -321,7 +324,12 @@ class ViewController: NSViewController, NSSoundDelegate {
 			for url in playlist! {
 				paths.add(url.absoluteString)
 			}
-			paths.write(to: panel.url!, atomically: true)
+			var data: [String : Any] = [:]
+			data["playlist"] = paths
+			data["shuffle"] = shuffleSongs.integerValue
+			data["repeat"] = repeatMode.indexOfSelectedItem
+			data["showPaths"] = showFullPath.integerValue
+			(data as NSDictionary).write(to: panel.url!, atomically: true)
 		}
 	}
 
