@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -362,40 +362,18 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ArcMusicPlayer" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box fixedFrame="YES" borderType="line" title="Interface Settings" translatesAutoresizingMaskIntoConstraints="NO" id="Wiw-gP-v5x">
-                                <rect key="frame" x="17" y="16" width="416" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="xO7-hH-Q6u">
-                                    <rect key="frame" x="1" y="1" width="414" height="36"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db4-GZ-iCo">
-                                            <rect key="frame" x="18" y="11" width="164" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Show full path to songs" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vNF-nt-8NI">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                                <string key="keyEquivalent">f</string>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="changeShowFullPathMode:" target="XfG-lQ-9wD" id="v5n-9V-qLR"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                </view>
-                            </box>
-                            <box fixedFrame="YES" borderType="line" title="Load/Unload Songs" translatesAutoresizingMaskIntoConstraints="NO" id="Ben-Qn-ih3">
-                                <rect key="frame" x="17" y="161" width="416" height="66"/>
+                            <box fixedFrame="YES" borderType="line" title="Playlist Controls" translatesAutoresizingMaskIntoConstraints="NO" id="Ben-Qn-ih3">
+                                <rect key="frame" x="17" y="161" width="416" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="bZY-N1-OzA">
-                                    <rect key="frame" x="1" y="1" width="414" height="50"/>
+                                    <rect key="frame" x="1" y="1" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iUv-qr-7X8">
-                                            <rect key="frame" x="14" y="10" width="65" height="32"/>
+                                            <rect key="frame" x="14" y="40" width="65" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FqX-0d-Fop">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -407,7 +385,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tbl-fo-wDE">
-                                            <rect key="frame" x="281" y="10" width="119" height="32"/>
+                                            <rect key="frame" x="281" y="40" width="119" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Clear Playlist" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oj0-bf-oC9">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -422,7 +400,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Em3-Nx-Bvc">
-                                            <rect key="frame" x="70" y="10" width="78" height="32"/>
+                                            <rect key="frame" x="70" y="40" width="78" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VBf-U6-LWl">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -436,7 +414,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EnV-Yf-fou">
-                                            <rect key="frame" x="149" y="10" width="70" height="32"/>
+                                            <rect key="frame" x="149" y="40" width="70" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Load" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Is2-Mw-YnD">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -448,7 +426,7 @@ CA
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0wz-f5-SuQ">
-                                            <rect key="frame" x="211" y="10" width="70" height="32"/>
+                                            <rect key="frame" x="211" y="40" width="70" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pnq-eh-96P">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -459,11 +437,19 @@ CA
                                                 <action selector="writePlaylistToFile:" target="XfG-lQ-9wD" id="rrC-uk-kSX"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OiI-3g-oSJ">
+                                            <rect key="frame" x="18" y="18" width="201" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Save player state with playlist" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="w7p-jW-k2M">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
                                     </subviews>
                                 </view>
                             </box>
                             <box fixedFrame="YES" borderType="line" title="Playback" translatesAutoresizingMaskIntoConstraints="NO" id="BFy-gb-POP">
-                                <rect key="frame" x="17" y="231" width="416" height="199"/>
+                                <rect key="frame" x="17" y="261" width="416" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="McQ-yv-wgy">
                                     <rect key="frame" x="1" y="1" width="414" height="183"/>
@@ -618,6 +604,28 @@ IA
                                     </subviews>
                                 </view>
                             </box>
+                            <box fixedFrame="YES" borderType="line" title="Interface Settings" translatesAutoresizingMaskIntoConstraints="NO" id="Wiw-gP-v5x">
+                                <rect key="frame" x="17" y="16" width="416" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="xO7-hH-Q6u">
+                                    <rect key="frame" x="1" y="1" width="414" height="36"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db4-GZ-iCo">
+                                            <rect key="frame" x="18" y="11" width="164" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show full path to songs" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vNF-nt-8NI">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <string key="keyEquivalent">f</string>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="changeShowFullPathMode:" target="XfG-lQ-9wD" id="v5n-9V-qLR"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                            </box>
                             <box fixedFrame="YES" borderType="line" title="Shuffle/Repeat" translatesAutoresizingMaskIntoConstraints="NO" id="nlt-YA-xc0">
                                 <rect key="frame" x="17" y="72" width="416" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -663,6 +671,7 @@ IA
                     <connections>
                         <outlet property="playlistPopup" destination="RVL-M3-S94" id="inE-AI-HUc"/>
                         <outlet property="repeatMode" destination="GEK-QA-1p3" id="fD4-dY-biI"/>
+                        <outlet property="savePlayerState" destination="OiI-3g-oSJ" id="wpe-qB-QDf"/>
                         <outlet property="showFullPath" destination="db4-GZ-iCo" id="2y6-wY-2X1"/>
                         <outlet property="shuffleSongs" destination="Z7g-uB-ud3" id="1nj-v8-Pvq"/>
                         <outlet property="songProgress" destination="Uts-16-MXi" id="Vpv-d8-MJr"/>
@@ -672,7 +681,7 @@ IA
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="975"/>
+            <point key="canvasLocation" x="74" y="990"/>
         </scene>
     </scenes>
 </document>

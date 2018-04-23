@@ -24,6 +24,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 
 	//data
 	@IBOutlet weak var playlistPopup: NSPopUpButton!
+	@IBOutlet weak var savePlayerState: NSButton!
 	//playback
 	@IBOutlet weak var songProgress: NSSlider!
 	@IBOutlet weak var songTime: NSTextField!
@@ -307,9 +308,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 					let songurl = item as! String
 					playlist!.append(URL(string: songurl)!)
 				}
-				shuffleSongs.integerValue = data["shuffle"] as! Int
-				repeatMode.selectSegment(withTag: (data["repeat"] as! Int))
-				showFullPath.integerValue = data["showPaths"] as! Int
+				savePlayerState.integerValue = data["hasState"] as! Int
+				if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
+					volumeSlider.floatValue = data["volume"] as! Float
+					shuffleSongs.integerValue = data["shuffle"] as! Int
+					repeatMode.selectSegment(withTag: (data["repeat"] as! Int))
+					showFullPath.integerValue = data["showPaths"] as! Int
+				}
 			}
 			updatePlaylist()
 		}
@@ -326,9 +331,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 			}
 			var data: [String : Any] = [:]
 			data["playlist"] = paths
-			data["shuffle"] = shuffleSongs.integerValue
-			data["repeat"] = repeatMode.indexOfSelectedItem
-			data["showPaths"] = showFullPath.integerValue
+			data["hasState"] = savePlayerState.integerValue
+			if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
+				data["volume"] = volumeSlider.floatValue
+				data["shuffle"] = shuffleSongs.integerValue
+				data["repeat"] = repeatMode.indexOfSelectedItem
+				data["showPaths"] = showFullPath.integerValue
+			}
 			(data as NSDictionary).write(to: panel.url!, atomically: true)
 		}
 	}
