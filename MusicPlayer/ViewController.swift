@@ -299,13 +299,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 		let panel = NSOpenPanel()
 		panel.canChooseDirectories = false
 		panel.allowsMultipleSelection = true
-		panel.allowedFileTypes = ["plist"]
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
 				do {
 					var data = try String(contentsOf: url).components(separatedBy: "\n")
 					if data[0] == "[StateInfo]" {
+						data.removeFirst()
 						let vol = Float(data.removeFirst())!
 						let shuf = Int(data.removeFirst())!
 						let rep = Int(data.removeFirst())!
@@ -313,13 +313,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 						if data.removeFirst() != "[EndStateInfo]" {
 							continue
 						}
-						volumeSlider.floatValue = vol
+						volumeSlider.floatValue = vol / 128
 						shuffleSongs.integerValue = shuf
 						repeatMode.selectSegment(withTag: rep)
 						showFullPath.integerValue = path
 					}
 					for path in data {
-						playlist!.append(URL(string: path)!)
+						playlist!.append(URL(fileURLWithPath: path))
 					}
 				} catch {}
 			}
@@ -329,16 +329,16 @@ class ViewController: NSViewController, NSSoundDelegate {
 
 	@IBAction func writePlaylistToFile(_ sender: AnyObject) {
 		let panel = NSSavePanel()
-		panel.allowedFileTypes = ["plist"]
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			let paths = NSMutableArray()
 			for url in playlist! {
-				paths.add(url.absoluteString)
+				paths.add(url.path)
 			}
 			var data = ""
 			if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
-				data.append("[StateInfo]\n\(volumeSlider.floatValue)\n\(shuffleSongs.integerValue)\n")
+				let vol = Int(volumeSlider.floatValue * 128)
+				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.integerValue)\n")
 				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.integerValue)\n[EndStateInfo]\n")
 			}
 			data.append(paths.componentsJoined(by: "\n"))
