@@ -303,18 +303,25 @@ class ViewController: NSViewController, NSSoundDelegate {
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
-				let data = NSDictionary(contentsOf: url) as! [String : Any]
-				for item in (data["playlist"] as! NSArray) {
-					let songurl = item as! String
-					playlist!.append(URL(string: songurl)!)
-				}
-				savePlayerState.integerValue = data["hasState"] as! Int
-				if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
-					volumeSlider.floatValue = data["volume"] as! Float
-					shuffleSongs.integerValue = data["shuffle"] as! Int
-					repeatMode.selectSegment(withTag: (data["repeat"] as! Int))
-					showFullPath.integerValue = data["showPaths"] as! Int
-				}
+				do {
+					var data = try String(contentsOf: url).components(separatedBy: "\n")
+					if data[0] == "[StateInfo]" {
+						let vol = Float(data.removeFirst())!
+						let shuf = Int(data.removeFirst())!
+						let rep = Int(data.removeFirst())!
+						let path = Int(data.removeFirst())!
+						if data.removeFirst() != "[EndStateInfo]" {
+							continue
+						}
+						volumeSlider.floatValue = vol
+						shuffleSongs.integerValue = shuf
+						repeatMode.selectSegment(withTag: rep)
+						showFullPath.integerValue = path
+					}
+					for path in data {
+						playlist!.append(URL(string: path)!)
+					}
+				} catch {}
 			}
 			updatePlaylist()
 		}
@@ -329,16 +336,15 @@ class ViewController: NSViewController, NSSoundDelegate {
 			for url in playlist! {
 				paths.add(url.absoluteString)
 			}
-			var data: [String : Any] = [:]
-			data["playlist"] = paths
-			data["hasState"] = savePlayerState.integerValue
+			var data = ""
 			if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
-				data["volume"] = volumeSlider.floatValue
-				data["shuffle"] = shuffleSongs.integerValue
-				data["repeat"] = repeatMode.indexOfSelectedItem
-				data["showPaths"] = showFullPath.integerValue
+				data.append("[StateInfo]\n\(volumeSlider.floatValue)\n\(shuffleSongs.integerValue)\n")
+				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.integerValue)\n[EndStateInfo]\n")
 			}
-			(data as NSDictionary).write(to: panel.url!, atomically: true)
+			data.append(paths.componentsJoined(by: "\n"))
+			do {
+				try data.write(to: panel.url!, atomically: true, encoding: String.Encoding.utf8)
+			} catch {}
 		}
 	}
 
