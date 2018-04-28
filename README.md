@@ -12,8 +12,28 @@ Arc Music Player includes just the most basic playback commands:
 - Jumping forwards/backwards 10 or 30 seconds
 - Volume control (separate from system volume)
 - Saving/loading/clearing song list
+- Saving player state
 - Shuffle
 - Repeat on song or whole list
+
+### Playlist format
+
+Saving the playlist creates a plain text file that contains a list of paths to the sound files that were in the playlist at the time of saving.
+
+If the player state is saved with the playlist, information regarding the player's state will be stored at the beginning of the text file. This information is delimited by `[StateInfo]` and `[EndStateInfo]`. Between these markers are the player volume, shuffle setting, repeat setting, and full path display setting, encoded as integers. If the state is not saved, this section is omitted.
+
+Example:
+
+```
+[StateInfo]
+64
+0
+0
+0
+[EndStateInfo]
+/path/to/file.mp3
+/other/path/to/other/file.ogg
+```
 
 ### Legal
 
