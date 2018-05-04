@@ -74,7 +74,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		playlistPopup.removeAllItems()
 		for url in playlist! {
 			var path = url.absoluteString
-			if showFullPath.integerValue == 0 {
+			if showFullPath.state == .off {
 				path = url.lastPathComponent.replacingOccurrences(of: "%20", with: " ")
 			}
 			playlistPopup.addItem(withTitle: path)
@@ -87,7 +87,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 	}
 
 	func showNotif() {
-		if showNotifs.state == NSControl.StateValue.off {
+		if showNotifs.state == .off {
 			return
 		}
 		let notif = NSUserNotification()
@@ -226,7 +226,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 			playSong()
 			return
 		}
-		if shuffleSongs.integerValue == 0 {
+		if shuffleSongs.state == .off {
 			currentSongIndex -= 1
 			if currentSongIndex < 0 {
 				currentSongIndex = 0
@@ -242,7 +242,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		if playlist!.count <= 0 {
 			return
 		}
-		if shuffleSongs.integerValue == 0 {
+		if shuffleSongs.state == .off {
 			if playlist!.count > currentSongIndex + 1 || repeatMode.selectedSegment == 1 {
 				if repeatMode.selectedSegment != 1 {
 					currentSongIndex += 1
@@ -318,9 +318,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 							continue
 						}
 						volumeSlider.floatValue = vol / 128
-						shuffleSongs.integerValue = shuf
+						shuffleSongs.state = NSControl.StateValue(rawValue: shuf)
 						repeatMode.selectSegment(withTag: rep)
-						showFullPath.integerValue = path
+						showFullPath.state = NSControl.StateValue(rawValue: path)
 					}
 					for path in data {
 						playlist!.append(URL(fileURLWithPath: path))
@@ -340,10 +340,10 @@ class ViewController: NSViewController, NSSoundDelegate {
 				paths.add(url.path)
 			}
 			var data = ""
-			if savePlayerState.integerValue == NSControl.StateValue.on.rawValue {
+			if savePlayerState.state == .on {
 				let vol = Int(volumeSlider.floatValue * 128)
-				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.integerValue)\n")
-				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.integerValue)\n[EndStateInfo]\n")
+				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.state)\n")
+				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.state)\n[EndStateInfo]\n")
 			}
 			data.append(paths.componentsJoined(by: "\n"))
 			do {
