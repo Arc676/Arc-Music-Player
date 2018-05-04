@@ -35,6 +35,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 	@IBOutlet weak var repeatMode: NSSegmentedControl!
 	//interface
 	@IBOutlet weak var showFullPath: NSButton!
+	@IBOutlet weak var showNotifs: NSButton!
 	override var acceptsFirstResponder: Bool { return true }
 
 	//songs
@@ -86,6 +87,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 	}
 
 	func showNotif() {
+		if showNotifs.state == NSControl.StateValue.off {
+			return
+		}
 		let notif = NSUserNotification()
 		notif.subtitle = "Arc Music Player"
 		notif.title = playlistPopup.itemTitle(at: currentSongIndex)

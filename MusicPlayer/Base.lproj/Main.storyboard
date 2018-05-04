@@ -343,7 +343,7 @@
                     <window key="window" title="Arc Music Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="450" height="450"/>
+                        <rect key="contentRect" x="196" y="240" width="450" height="515"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="G7G-pX-hN6"/>
@@ -362,11 +362,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ArcMusicPlayer" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="515"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" borderType="line" title="Playlist Controls" translatesAutoresizingMaskIntoConstraints="NO" id="Ben-Qn-ih3">
-                                <rect key="frame" x="17" y="161" width="416" height="96"/>
+                                <rect key="frame" x="17" y="196" width="416" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="bZY-N1-OzA">
                                     <rect key="frame" x="1" y="1" width="414" height="80"/>
@@ -449,7 +449,7 @@ CA
                                 </view>
                             </box>
                             <box fixedFrame="YES" borderType="line" title="Playback" translatesAutoresizingMaskIntoConstraints="NO" id="BFy-gb-POP">
-                                <rect key="frame" x="17" y="261" width="416" height="199"/>
+                                <rect key="frame" x="17" y="296" width="416" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="McQ-yv-wgy">
                                     <rect key="frame" x="1" y="1" width="414" height="183"/>
@@ -605,14 +605,14 @@ IA
                                 </view>
                             </box>
                             <box fixedFrame="YES" borderType="line" title="Interface Settings" translatesAutoresizingMaskIntoConstraints="NO" id="Wiw-gP-v5x">
-                                <rect key="frame" x="17" y="16" width="416" height="52"/>
+                                <rect key="frame" x="17" y="16" width="416" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="xO7-hH-Q6u">
-                                    <rect key="frame" x="1" y="1" width="414" height="36"/>
+                                    <rect key="frame" x="1" y="1" width="414" height="71"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db4-GZ-iCo">
-                                            <rect key="frame" x="18" y="11" width="164" height="18"/>
+                                            <rect key="frame" x="18" y="46" width="164" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Show full path to songs" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vNF-nt-8NI">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -623,11 +623,19 @@ IA
                                                 <action selector="changeShowFullPathMode:" target="XfG-lQ-9wD" id="v5n-9V-qLR"/>
                                             </connections>
                                         </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QpB-wG-YjB">
+                                            <rect key="frame" x="18" y="18" width="134" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Show notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="0vh-KT-8nd">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
                                     </subviews>
                                 </view>
                             </box>
                             <box fixedFrame="YES" borderType="line" title="Shuffle/Repeat" translatesAutoresizingMaskIntoConstraints="NO" id="nlt-YA-xc0">
-                                <rect key="frame" x="17" y="72" width="416" height="85"/>
+                                <rect key="frame" x="17" y="107" width="416" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="lYt-xh-xdk">
                                     <rect key="frame" x="1" y="1" width="414" height="69"/>
@@ -673,6 +681,7 @@ IA
                         <outlet property="repeatMode" destination="GEK-QA-1p3" id="fD4-dY-biI"/>
                         <outlet property="savePlayerState" destination="OiI-3g-oSJ" id="wpe-qB-QDf"/>
                         <outlet property="showFullPath" destination="db4-GZ-iCo" id="2y6-wY-2X1"/>
+                        <outlet property="showNotifs" destination="QpB-wG-YjB" id="aA2-jO-0ff"/>
                         <outlet property="shuffleSongs" destination="Z7g-uB-ud3" id="1nj-v8-Pvq"/>
                         <outlet property="songProgress" destination="Uts-16-MXi" id="Vpv-d8-MJr"/>
                         <outlet property="songTime" destination="9rg-xW-T5v" id="qc9-dp-4eO"/>
@@ -681,7 +690,7 @@ IA
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="990"/>
+            <point key="canvasLocation" x="74" y="1007.5"/>
         </scene>
     </scenes>
 </document>
