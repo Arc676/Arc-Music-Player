@@ -37,4 +37,4 @@ Example:
 
 ### Legal
 
-Project available under GPLv3 except linking Apple libraries is allowed to the extent to which this is necessary for compilation. See `LICENSE` for full GPL text.
+Project available under GPLv3 except linking Apple libraries is allowed to the extent to which this is necessary for compilation. See `LICENSE` for full GPL text. Image icon by [Nuno Jesus](https://github.com/nunojesus/graphic-design-portfolio) available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
