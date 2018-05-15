@@ -1,6 +1,4 @@
-# Arc-Music-Player
-A simple music player
-
+# Arc Music Player
 The Arc Music Player is path-based rather than library-based music player. Save your music library in a file that just contains the paths to the sound files without actually having to copy those files to a separate directory.
 
 Arc Music Player includes just the most basic playback commands:
@@ -18,9 +16,9 @@ Arc Music Player includes just the most basic playback commands:
 
 ### Playlist format
 
-Saving the playlist creates a plain text file that contains a list of paths to the sound files that were in the playlist at the time of saving.
+Saving the playlist creates a plain text file that contains a list of paths to the sound files that were in the playlist at the time of saving. The format is the same as the one used by the [Linux version](https://github.com/Arc676/Arc-Music-Player-Gtk). The same playlist file can be used on both platforms, as long as the path to the files remains the same. This can easily be done if the files are located on an external drive and mounted at the same path on both operating systems.
 
-If the player state is saved with the playlist, information regarding the player's state will be stored at the beginning of the text file. This information is delimited by `[StateInfo]` and `[EndStateInfo]`. Between these markers are the player volume, shuffle setting, repeat setting, and full path display setting, encoded as integers. If the state is not saved, this section is omitted.
+If the player state is saved with the playlist, information regarding the player's state will be stored at the beginning of the text file. This information is delimited by `[StateInfo]` and `[EndStateInfo]`. Between these markers are the player volume (between 0 and 1024), shuffle setting, repeat setting, and full path display setting, encoded as integers. If the state is not saved, this section is omitted.
 
 Example:
 
