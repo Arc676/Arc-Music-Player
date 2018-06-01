@@ -342,8 +342,8 @@ class ViewController: NSViewController, NSSoundDelegate {
 			var data = ""
 			if savePlayerState.state == .on {
 				let vol = Int(volumeSlider.floatValue * 128)
-				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.state)\n")
-				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.state)\n[EndStateInfo]\n")
+				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.state.rawValue)\n")
+				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.state.rawValue)\n[EndStateInfo]\n")
 			}
 			data.append(paths.componentsJoined(by: "\n"))
 			do {

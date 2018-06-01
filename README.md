@@ -1,5 +1,5 @@
 # Arc Music Player
-The Arc Music Player is path-based rather than library-based music player. Save your music library in a file that just contains the paths to the sound files without actually having to copy those files to a separate directory.
+The Arc Music Player is a minimalist music player. Save your music library in a file that just contains the paths to the sound files and optionally information about the your playback preferences.
 
 Arc Music Player includes just the most basic playback commands:
 - Loading a number of songs into a list that will be played
