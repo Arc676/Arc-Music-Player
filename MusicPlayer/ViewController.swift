@@ -135,6 +135,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 			song.stop()
 			isPlaying = false
 		}
+		stopUpTimer()
 	}
 
 	func stopUpTimer() {
@@ -294,7 +295,6 @@ class ViewController: NSViewController, NSSoundDelegate {
 					playlist!.append(url)
 				}
 			}
-			currentSongIndex = 0
 		}
 		updatePlaylist()
 	}
