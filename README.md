@@ -3,16 +3,15 @@ The Arc Music Player is a minimalist music player. Save your music library in a 
 
 Arc Music Player includes just the most basic playback commands:
 - Loading a number of songs into a list that will be played
-- Picking any song from that list
+- Removing songs from the playlist
+- Picking any song from the playlist
 - Skipping to next/going back to previous song
 - Pausing and resuming
 - Moving to a different point in the song
 - Jumping forwards/backwards 10 or 30 seconds
 - Volume control (separate from system volume)
-- Saving/loading/clearing song list
-- Saving player state
-- Shuffle
-- Repeat on song or whole list
+- Writing and reading playlist and player state to and from disk
+- Shuffle, song repeat, playlist repeat
 
 ### Playlist format
 

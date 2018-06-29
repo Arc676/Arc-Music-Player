@@ -49,7 +49,7 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 	}
 
 	func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-		return ViewController.getPlaylist()![row]
+		return ViewController.getPlaylist()![row].lastPathComponent.replacingOccurrences(of: "%20", with: " ")
 	}
 
 	@IBAction func loadSong(_ sender: AnyObject) {
