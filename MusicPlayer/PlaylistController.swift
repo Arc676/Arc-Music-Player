@@ -35,6 +35,23 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		panel.allowsOtherFileTypes = false
 	}
 
+	override func viewDidLoad() {
+		playlistTable.reloadData()
+	}
+
+	func reload() {
+		ViewController.shouldUpdatePlaylist()
+		playlistTable.reloadData()
+	}
+
+	func numberOfRows(in tableView: NSTableView) -> Int {
+		return ViewController.getPlaylist()!.count
+	}
+
+	func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+		return ViewController.getPlaylist()![row]
+	}
+
 	@IBAction func loadSong(_ sender: AnyObject) {
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			let fm = FileManager()
@@ -51,10 +68,19 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 				}
 			}
 		}
-		ViewController.shouldUpdatePlaylist()
+		reload()
 	}
 
 	@IBAction func unloadSong(_ sender: AnyObject) {
+		var removed = 0
+		let count = ViewController.getPlaylist()!.count
+		for i in 0..<count {
+			if playlistTable.isRowSelected(i) {
+				ViewController.removeFromPlaylist(at: i - removed)
+				removed += 1
+			}
+		}
+		reload()
 	}
 
 	@IBAction func clearSongs(_ sender: AnyObject) {
@@ -93,7 +119,7 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 					}
 				} catch {}
 			}
-			ViewController.shouldUpdatePlaylist()
+			reload()
 		}
 	}
 

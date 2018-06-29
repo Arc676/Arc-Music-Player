@@ -61,6 +61,10 @@ class ViewController: NSViewController, NSSoundDelegate {
 		instance?.playlist?.append(item)
 	}
 
+	static func removeFromPlaylist(at index: Int) {
+		instance?.playlist?.remove(at: index)
+	}
+
 	static func shouldUpdatePlaylist() {
 		instance?.updatePlaylist()
 	}
