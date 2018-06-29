@@ -24,7 +24,6 @@ class ViewController: NSViewController, NSSoundDelegate {
 
 	//data
 	@IBOutlet weak var playlistPopup: NSPopUpButton!
-	@IBOutlet weak var savePlayerState: NSButton!
 	//playback
 	@IBOutlet weak var songProgress: NSSlider!
 	@IBOutlet weak var songTime: NSTextField!
@@ -44,12 +43,47 @@ class ViewController: NSViewController, NSSoundDelegate {
 	var song: NSSound!
 	var isPlaying: Bool = false
 
+	static var instance: ViewController? = nil
+
 	var songDuration: String = "0:00"
 
 	var updateTimer: Timer!
 
+	static func clearSongs() {
+		instance?.playlistCleared()
+	}
+
+	static func getPlaylist() -> [URL]? {
+		return instance?.playlist
+	}
+
+	static func addToPlaylist(_ item: URL) {
+		instance?.playlist?.append(item)
+	}
+
+	static func shouldUpdatePlaylist() {
+		instance?.updatePlaylist()
+	}
+
+	static func getPlayerState() -> [String : Any] {
+		return [
+			"Volume" : instance!.volumeSlider.floatValue * 128,
+			"Shuffle" : instance!.shuffleSongs.state.rawValue,
+			"Repeat" : instance!.repeatMode.indexOfSelectedItem,
+			"ShowPaths" : instance!.showFullPath.state.rawValue
+		]
+	}
+
+	static func loadPlayerState(_ state: [String : Any]) {
+		instance?.volumeSlider.floatValue = state["Volume"] as! Float
+		instance?.shuffleSongs.state = NSControl.StateValue(rawValue: state["Shuffle"] as! Int)
+		instance?.repeatMode.selectSegment(withTag: state["Repeat"] as! Int)
+		instance?.showFullPath.state = NSControl.StateValue(rawValue: state["ShowPaths"] as! Int)
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		ViewController.instance = self
 		playlist = []
 		songProgress.minValue = 0
 		self.view.window?.title = "Arc Music Player"
@@ -273,89 +307,7 @@ class ViewController: NSViewController, NSSoundDelegate {
 		playSong()
 	}
 
-	//song loading
-	@IBAction func loadSong(_ sender: AnyObject) {
-		let panel = NSOpenPanel()
-		panel.canChooseDirectories = true
-		panel.allowsMultipleSelection = true
-		panel.allowedFileTypes = NSSound.soundUnfilteredTypes
-		panel.allowsOtherFileTypes = false
-		let extensions = ["mp4","mp3","m4a","aiff","wav"]
-		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
-			let fm = FileManager()
-			for url in panel.urls {
-				if url.hasDirectoryPath {
-					for file in fm.enumerator(at: url, includingPropertiesForKeys: [])! {
-						let fileURL = file as! URL
-						if fileURL.isFileURL && extensions.contains(fileURL.pathExtension) {
-							playlist!.append(fileURL)
-						}
-					}
-				} else {
-					playlist!.append(url)
-				}
-			}
-		}
-		updatePlaylist()
-	}
-
-	@IBAction func loadPlaylistFromFile(_ sender: AnyObject) {
-		let panel = NSOpenPanel()
-		panel.canChooseDirectories = false
-		panel.allowsMultipleSelection = true
-		panel.allowsOtherFileTypes = false
-		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
-			for url in panel.urls {
-				do {
-					var data = try String(contentsOf: url).components(separatedBy: "\n")
-					if data[0] == "[StateInfo]" {
-						data.removeFirst()
-						let vol = Float(data.removeFirst())!
-						let shuf = Int(data.removeFirst())!
-						let rep = Int(data.removeFirst())!
-						let path = Int(data.removeFirst())!
-						if data.removeFirst() != "[EndStateInfo]" {
-							continue
-						}
-						volumeSlider.floatValue = vol / 128
-						shuffleSongs.state = NSControl.StateValue(rawValue: shuf)
-						repeatMode.selectSegment(withTag: rep)
-						showFullPath.state = NSControl.StateValue(rawValue: path)
-					}
-					for path in data {
-						playlist!.append(URL(fileURLWithPath: path))
-					}
-				} catch {}
-			}
-			updatePlaylist()
-		}
-	}
-
-	@IBAction func writePlaylistToFile(_ sender: AnyObject) {
-		let panel = NSSavePanel()
-		panel.allowsOtherFileTypes = false
-		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
-			let paths = NSMutableArray()
-			for url in playlist! {
-				paths.add(url.path)
-			}
-			var data = ""
-			if savePlayerState.state == .on {
-				let vol = Int(volumeSlider.floatValue * 128)
-				data.append("[StateInfo]\n\(vol)\n\(shuffleSongs.state.rawValue)\n")
-				data.append("\(repeatMode.indexOfSelectedItem)\n\(showFullPath.state.rawValue)\n[EndStateInfo]\n")
-			}
-			data.append(paths.componentsJoined(by: "\n"))
-			do {
-				try data.write(to: panel.url!, atomically: true, encoding: String.Encoding.utf8)
-			} catch {}
-		}
-	}
-
-	@IBAction func unloadSong(_ sender: AnyObject) {
-	}
-
-	@IBAction func clearSongs(_ sender: AnyObject) {
+	func playlistCleared() {
 		stopUpTimer()
 		stopSong()
 		song = nil
