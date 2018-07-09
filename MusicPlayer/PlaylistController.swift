@@ -42,6 +42,7 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 	func reload() {
 		ViewController.shouldUpdatePlaylist()
 		playlistTable.reloadData()
+		playlistTable.deselectAll(nil);
 	}
 
 	func numberOfRows(in tableView: NSTableView) -> Int {
@@ -134,8 +135,7 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 			var data = ""
 			if savePlayerState.state == .on {
 				let state = ViewController.getPlayerState()
-				let vol = state["Volume"] as! Int
-				data.append("[StateInfo]\n\(vol)\n\(state["Shuffle"]!)\n")
+				data.append("[StateInfo]\n\(Int(state["Volume"] as! Float))\n\(state["Shuffle"]!)\n")
 				data.append("\(state["Repeat"]!)\n\(state["ShowPaths"]!)\n[EndStateInfo]\n")
 			}
 			data.append(paths.componentsJoined(by: "\n"))
