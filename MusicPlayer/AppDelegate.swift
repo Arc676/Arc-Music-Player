@@ -22,6 +22,9 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+
+	@IBOutlet weak var autosaveMenuItem: NSMenuItem!
+	var autosaveState = false
     
     @objc func mediaKeyPressed(_ functionKey: String) {
         NotificationCenter.default.post(
@@ -30,5 +33,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             userInfo: ["fKey":functionKey]
         )
     }
+
+	@IBAction func setAutosave(_ sender: NSMenuItem) {
+		autosaveState = !autosaveState
+		sender.state = autosaveState ? .on : .off
+	}
+
+	func applicationDidFinishLaunching(_ notification: Notification) {
+		if let state = UserDefaults.standard.object(forKey: "State") as? String {
+			PlaylistController.loadState(state)
+			ViewController.shouldUpdatePlaylist()
+			autosaveState = true
+			autosaveMenuItem.state = .on
+		}
+	}
+
+	func applicationWillTerminate(_ notification: Notification) {
+		if autosaveState {
+			let state = PlaylistController.getWriteableState(saveState: true)
+			UserDefaults.standard.set(state, forKey: "State")
+		} else {
+			UserDefaults.standard.removeObject(forKey: "State")
+		}
+	}
 
 }

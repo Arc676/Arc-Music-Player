@@ -66,9 +66,10 @@
                                                 <segue destination="il3-IP-gn7" kind="show" id="Glq-c7-xxa"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
+                                        <menuItem title="Autosave state on quit" id="WjW-Rh-bPa">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
+                                                <action selector="setAutosave:" target="Voe-Tx-rLC" id="PnQ-jt-3Er"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -336,7 +337,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ArcMusicPlayer"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ArcMusicPlayer">
+                    <connections>
+                        <outlet property="autosaveMenuItem" destination="WjW-Rh-bPa" id="MPc-Nd-kiv"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="515" y="86"/>
@@ -427,11 +432,11 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="5w1-nK-Pq1">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="-7" y="-14" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="5oz-9D-Amp">
-                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <rect key="frame" x="-14" y="-7" width="15" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

@@ -97,27 +97,8 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			for url in panel.urls {
 				do {
-					var data = try String(contentsOf: url).components(separatedBy: "\n")
-					if data[0] == "[StateInfo]" {
-						data.removeFirst()
-						let vol = Float(data.removeFirst())!
-						let shuf = Int(data.removeFirst())!
-						let rep = Int(data.removeFirst())!
-						let path = Int(data.removeFirst())!
-						if data.removeFirst() != "[EndStateInfo]" {
-							continue
-						}
-						let state: [String : Any] = [
-							"Volume" : vol / 128,
-							"Shuffle" : shuf,
-							"Repeat" : rep,
-							"ShowPaths" : path
-						]
-						ViewController.loadPlayerState(state)
-					}
-					for path in data {
-						ViewController.addToPlaylist(URL(fileURLWithPath: path))
-					}
+					let data = try String(contentsOf: url)
+					PlaylistController.loadState(data)
 				} catch {}
 			}
 			reload()
@@ -128,20 +109,49 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		let panel = NSSavePanel()
 		panel.allowsOtherFileTypes = false
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
-			let paths = NSMutableArray()
-			for url in ViewController.getPlaylist()! {
-				paths.add(url.path)
-			}
-			var data = ""
-			if savePlayerState.state == .on {
-				let state = ViewController.getPlayerState()
-				data.append("[StateInfo]\n\(Int(state["Volume"] as! Float))\n\(state["Shuffle"]!)\n")
-				data.append("\(state["Repeat"]!)\n\(state["ShowPaths"]!)\n[EndStateInfo]\n")
-			}
-			data.append(paths.componentsJoined(by: "\n"))
+			let data = PlaylistController.getWriteableState(saveState: savePlayerState.state == .on)
 			do {
 				try data.write(to: panel.url!, atomically: true, encoding: String.Encoding.utf8)
 			} catch {}
+		}
+	}
+
+	class func getWriteableState(saveState: Bool) -> String {
+		let paths = NSMutableArray()
+		for url in ViewController.getPlaylist()! {
+			paths.add(url.path)
+		}
+		var data = ""
+		if saveState {
+			let state = ViewController.getPlayerState()
+			data.append("[StateInfo]\n\(Int(state["Volume"] as! Float))\n\(state["Shuffle"]!)\n")
+			data.append("\(state["Repeat"]!)\n\(state["ShowPaths"]!)\n[EndStateInfo]\n")
+		}
+		data.append(paths.componentsJoined(by: "\n"))
+		return data
+	}
+
+	class func loadState(_ input: String) {
+		var data = input.components(separatedBy: "\n")
+		if data[0] == "[StateInfo]" {
+			data.removeFirst()
+			let vol = Float(data.removeFirst())!
+			let shuf = Int(data.removeFirst())!
+			let rep = Int(data.removeFirst())!
+			let path = Int(data.removeFirst())!
+			if data.removeFirst() != "[EndStateInfo]" {
+				return
+			}
+			let state: [String : Any] = [
+				"Volume" : vol / 128,
+				"Shuffle" : shuf,
+				"Repeat" : rep,
+				"ShowPaths" : path
+			]
+			ViewController.loadPlayerState(state)
+		}
+		for path in data {
+			ViewController.addToPlaylist(URL(fileURLWithPath: path))
 		}
 	}
 	
