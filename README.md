@@ -12,6 +12,7 @@ Arc Music Player includes just the most basic playback commands:
 - Volume control (separate from system volume)
 - Writing and reading playlist and player state to and from disk
 - Shuffle, song repeat, playlist repeat
+- Automatically saving and restoring player state on quit and launch
 
 ### Playlist format
 
@@ -34,4 +35,4 @@ Example:
 
 ### Legal
 
-Project available under GPLv3 except linking Apple libraries is allowed to the extent to which this is necessary for compilation. See `LICENSE` for full GPL text. Image icon by [Nuno Jesus](https://github.com/nunojesus/graphic-design-portfolio) available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+Project available under GPLv3 except linking Apple libraries is allowed. See `LICENSE` for full GPL text. Image icon by [Nuno Jesus](https://github.com/nunojesus/graphic-design-portfolio) available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

@@ -39,6 +39,9 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		playlistTable.reloadData()
 	}
 
+	/**
+	Reloads interface to reflect new playlist state
+	*/
 	func reload() {
 		ViewController.shouldUpdatePlaylist()
 		playlistTable.reloadData()
@@ -53,6 +56,12 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		return ViewController.getPlaylist()![row].lastPathComponent.replacingOccurrences(of: "%20", with: " ")
 	}
 
+	/**
+	Adds a new song to the playlist
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func loadSong(_ sender: AnyObject) {
 		if panel.runModal().rawValue == NSFileHandlingPanelOKButton {
 			let fm = FileManager()
@@ -72,6 +81,12 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		reload()
 	}
 
+	/**
+	Removes the selected songs from the playlist
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func unloadSong(_ sender: AnyObject) {
 		var removed = 0
 		let count = ViewController.getPlaylist()!.count
@@ -84,11 +99,23 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		reload()
 	}
 
+	/**
+	Clears the playlist of all songs
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func clearSongs(_ sender: AnyObject) {
 		ViewController.clearSongs()
 		playlistTable.reloadData()
 	}
 
+	/**
+	Loads a playlist from disk
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func loadPlaylistFromFile(_ sender: AnyObject) {
 		let panel = NSOpenPanel()
 		panel.canChooseDirectories = false
@@ -105,6 +132,12 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		}
 	}
 
+	/**
+	Writes the current playlist to disk
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func writePlaylistToFile(_ sender: AnyObject) {
 		let panel = NSSavePanel()
 		panel.allowsOtherFileTypes = false
@@ -116,6 +149,15 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		}
 	}
 
+	/**
+	Obtains player state for writing to disk
+
+	- parameters:
+		- saveState: Whether the data should include player state
+
+	- returns:
+	The playlist and, optionally, player state encoded in a string
+	*/
 	class func getWriteableState(saveState: Bool) -> String {
 		let paths = NSMutableArray()
 		for url in ViewController.getPlaylist()! {
@@ -131,6 +173,12 @@ class PlaylistController: NSViewController, NSTableViewDelegate, NSTableViewData
 		return data
 	}
 
+	/**
+	Sets the player state
+
+	- parameters:
+		- input: String encoded form of desired state
+	*/
 	class func loadState(_ input: String) {
 		var data = input.components(separatedBy: "\n")
 		if data[0] == "[StateInfo]" {

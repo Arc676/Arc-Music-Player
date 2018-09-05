@@ -49,26 +49,56 @@ class ViewController: NSViewController, NSSoundDelegate {
 
 	var updateTimer: Timer!
 
+	/**
+	Clears the playlist in the instance
+	*/
 	static func clearSongs() {
 		instance?.playlistCleared()
 	}
 
+	/**
+	Obtains the playlist from the instance
+
+	- returns:
+	List of URLs of the songs currently in the playlist
+	*/
 	static func getPlaylist() -> [URL]? {
 		return instance?.playlist
 	}
 
+	/**
+	Adds a new song to the instance's playlist
+
+	- parameters:
+		- item: URL of song to add
+	*/
 	static func addToPlaylist(_ item: URL) {
 		instance?.playlist?.append(item)
 	}
 
+	/**
+	Removes a song from the instance's playlist
+
+	- parameters:
+		- index: Index of song to remove
+	*/
 	static func removeFromPlaylist(at index: Int) {
 		instance?.playlist?.remove(at: index)
 	}
 
+	/**
+	Signals to the instance that the playlist combo box needs to be updated
+	*/
 	static func shouldUpdatePlaylist() {
 		instance?.updatePlaylist()
 	}
 
+	/**
+	Obtains the player's state
+
+	- returns:
+	A dictionary describing the player's current state
+	*/
 	static func getPlayerState() -> [String : Any] {
 		return [
 			"Volume" : instance!.volumeSlider.floatValue * 128,
@@ -78,6 +108,12 @@ class ViewController: NSViewController, NSSoundDelegate {
 		]
 	}
 
+	/**
+	Sets the player state
+
+	- parameters:
+		- state: Dictionary describing desired player state
+	*/
 	static func loadPlayerState(_ state: [String : Any]) {
 		instance?.volumeSlider.floatValue = state["Volume"] as! Float
 		instance?.shuffleSongs.state = NSControl.StateValue(rawValue: state["Shuffle"] as! Int)
@@ -97,17 +133,29 @@ class ViewController: NSViewController, NSSoundDelegate {
 											   object: NSApplication.shared.delegate as! AppDelegate)
 	}
 
+	/**
+	Reacts to media keys being pressed
+
+	- parameters:
+		- notif: Notification indicating which function key was pressed
+	*/
 	@objc func mediaKeyPressed(_ notif: Notification) {
 		let fKey: String = notif.userInfo!["fKey"]! as! String
-		if fKey == "F7" {
-			prevSong(NSNull())
-		}else if fKey == "F8" {
-			playPause(NSNull())
-		}else if fKey == "F9" {
-			nextSong(NSNull())
+		switch fKey {
+		case "F7":
+			prevSong(nil)
+		case "F8":
+			playPause(nil)
+		case "F9":
+			nextSong(nil)
+		default:
+			break
 		}
 	}
 
+	/**
+	Updates the dropdown menu containing the playlist
+	*/
 	func updatePlaylist() {
 		playlistPopup.removeAllItems()
 		for url in playlist! {
@@ -120,10 +168,20 @@ class ViewController: NSViewController, NSSoundDelegate {
 		playlistPopup.selectItem(at: currentSongIndex)
 	}
 
+	/**
+	Signals that the user has changed whether they want the full path to each
+	song to be shown in the playlist
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func changeShowFullPathMode(_ sender: AnyObject) {
 		updatePlaylist()
 	}
 
+	/**
+	Create and show a notification with the current song title
+	*/
 	func showNotif() {
 		if showNotifs.state == .off {
 			return
@@ -134,11 +192,16 @@ class ViewController: NSViewController, NSSoundDelegate {
 		NSUserNotificationCenter.default.deliver(notif)
 	}
 
-	//delegating and stuff
 	func sound(_ sound: NSSound, didFinishPlaying aBool: Bool) {
 		nextSong(NSNull())
 	}
 
+	/**
+	Updates the duration slider
+
+	- parameters:
+		- timer: Timer object
+	*/
 	@objc func updateTimeData(_ timer: Timer) {
 		if song == nil {
 			return
@@ -153,6 +216,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		songTime.stringValue = String(minutes) + ":" + seconds + "/" + songDuration
 	}
 
+	/**
+	Starts playback of the currently selected song
+	*/
 	func playSong() {
 		song = NSSound(contentsOf: playlist![currentSongIndex], byReference: false)
 		song.delegate = self
@@ -167,6 +233,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		updatePlaylist()
 	}
 
+	/**
+	Stops playback
+	*/
 	func stopSong() {
 		if song != nil {
 			song.delegate = nil
@@ -176,14 +245,9 @@ class ViewController: NSViewController, NSSoundDelegate {
 		stopUpTimer()
 	}
 
-	func stopUpTimer() {
-		if updateTimer == nil {
-			return
-		}
-		updateTimer.invalidate()
-		updateTimer = nil
-	}
-
+	/**
+	Starts the timer to update the song duration slider
+	*/
 	func startUpTimer() {
 		updateTimer = Timer.scheduledTimer(
 			timeInterval: 0.25,
@@ -193,37 +257,83 @@ class ViewController: NSViewController, NSSoundDelegate {
 			repeats: true)
 	}
 
-	//playback
+	/**
+	Stops the timer to update the song duration slider
+	*/
+	func stopUpTimer() {
+		if updateTimer == nil {
+			return
+		}
+		updateTimer.invalidate()
+		updateTimer = nil
+	}
+
+	/**
+	Rewinds 30 seconds
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func rewind30s(_ sender: AnyObject) {
 		if song != nil {
 			song.currentTime -= 30
 		}
 	}
 
+	/**
+	Rewinds 10 seconds
+
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func rewind10s(_ sender: AnyObject) {
 		if song != nil{
 			song.currentTime -= 10
 		}
 	}
 
-	@IBAction func ff10s(_ sender: AnyObject) {
-		if song != nil{
-			song.currentTime += 10
-		}
-	}
+	/**
+	Fast-forwards 30 seconds
 
+	- parameters:
+		- sender: Clicked button
+	*/
 	@IBAction func ff30s(_ sender: AnyObject) {
 		if song != nil{
 			song.currentTime += 30
 		}
 	}
 
+	/**
+	Fast-forwards 10 seconds
+
+	- parameters:
+		- sender: Clicked button
+	*/
+	@IBAction func ff10s(_ sender: AnyObject) {
+		if song != nil{
+			song.currentTime += 10
+		}
+	}
+
+	/**
+	Updates the desired song volume
+
+	- parameters:
+		- sender: Volume slider
+	*/
 	@IBAction func changeSongVolume(_ sender: NSSlider) {
 		if song != nil {
 			song.volume = sender.floatValue
 		}
 	}
 
+	/**
+	Jumps to a specific location in the current song
+
+	- parameters:
+		- sender: Playback position slider
+	*/
 	@IBAction func goToLocationInSong(_ sender: NSSlider) {
 		if song == nil {
 			return
@@ -237,7 +347,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 		}
 	}
 
-	@IBAction func playPause(_ sender: AnyObject) {
+	/**
+	Toggles playback
+
+	- parameters:
+		- sender: Clicked button
+	*/
+	@IBAction func playPause(_ sender: AnyObject?) {
 		if song == nil {
 			return
 		}
@@ -255,7 +371,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 		song.volume = volumeSlider.floatValue
 	}
 
-	@IBAction func prevSong(_ sender: AnyObject) {
+	/**
+	Selects and plays the previous song, if possible
+
+	- parameters:
+		- sender: Clicked button
+	*/
+	@IBAction func prevSong(_ sender: AnyObject?) {
 		stopSong()
 		if playlist!.count <= 0 {
 			return
@@ -276,7 +398,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 		showNotif()
 	}
 
-	@IBAction func nextSong(_ sender: AnyObject) {
+	/**
+	Selects and plays the next song, if possible
+
+	- parameters:
+		- sender: Clicked button
+	*/
+	@IBAction func nextSong(_ sender: AnyObject?) {
 		stopSong()
 		if playlist!.count <= 0 {
 			return
@@ -305,12 +433,21 @@ class ViewController: NSViewController, NSSoundDelegate {
 		showNotif()
 	}
 
+	/**
+	Signals that the user chose a song from the playlist and plays that song
+
+	- parameters:
+		- sender: Playlist dropdown
+	*/
 	@IBAction func userChoseSongFromPlaylist(_ sender: NSPopUpButton) {
 		stopSong()
 		currentSongIndex = sender.indexOfSelectedItem
 		playSong()
 	}
 
+	/**
+	Signals that the playlist has been cleared
+	*/
 	func playlistCleared() {
 		stopUpTimer()
 		stopSong()

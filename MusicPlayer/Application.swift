@@ -21,7 +21,8 @@
 import Cocoa
 
 class Application: NSApplication {
-	
+
+	// capture media keys being pressed
     override func sendEvent(_ theEvent: NSEvent) {
         if theEvent.type == .systemDefined && theEvent.subtype.rawValue == 8 {
             let keyCode = ((theEvent.data1 & 0xFFFF0000) >> 16)

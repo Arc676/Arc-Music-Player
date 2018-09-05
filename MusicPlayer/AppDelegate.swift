@@ -25,7 +25,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	@IBOutlet weak var autosaveMenuItem: NSMenuItem!
 	var autosaveState = false
-    
+
+	/**
+	Posts a notification that a function key was pressed (used to capture media keys)
+
+	- parameters:
+		- functionKey: Name of function key pressed
+	*/
     @objc func mediaKeyPressed(_ functionKey: String) {
         NotificationCenter.default.post(
             name: Notification.Name(rawValue: "MediaKeyPressed"),
