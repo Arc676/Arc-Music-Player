@@ -447,6 +447,13 @@ class ViewController: NSViewController, NSSoundDelegate {
 		playSong()
 	}
 
+	@IBAction func playRandomSong(_ sender: Any) {
+		stopSong()
+		currentSongIndex = Int(arc4random_uniform(UInt32(playlist!.count)))
+		playlistPopup.selectItem(at: currentSongIndex)
+		playSong()
+	}
+	
 	/**
 	Signals that the playlist has been cleared
 	*/
