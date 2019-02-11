@@ -36,3 +36,5 @@ Example:
 ### Legal
 
 Project available under GPLv3 except linking Apple libraries is allowed. See `LICENSE` for full GPL text. Image icon by [Nuno Jesus](https://github.com/nunojesus/graphic-design-portfolio) available under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+
+`ScrollableSlider` class by Nate Thompson available under MIT license, copyright 2017. See `MIT` for full MIT license text. Per GPLv3 terms, this work is being redistributed under the GPLv3 license as part of this project. You can find the original repository [here](https://github.com/thompsonate/Scrollable-NSSlider) if you want to use it under MIT terms.

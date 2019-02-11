@@ -14,6 +14,8 @@
 		52F3A9D11BC7BE0B008A1243 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F3A9D01BC7BE0B008A1243 /* Application.swift */; };
 		710ABA1020E6289F00F7AA0B /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710ABA0F20E6289F00F7AA0B /* PlaylistController.swift */; };
 		71BBBBCA1F57054B005A4257 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 71BBBBC91F57054B005A4257 /* Credits.rtf */; };
+		71F3EB112211845F004C2CF3 /* ScrollableSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F3EB102211845F004C2CF3 /* ScrollableSlider.swift */; };
+		71F3EB13221186FD004C2CF3 /* MIT in Resources */ = {isa = PBXBuildFile; fileRef = 71F3EB12221186FD004C2CF3 /* MIT */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		71BBBBC51F56FC12005A4257 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		71BBBBC61F56FC12005A4257 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		71BBBBC91F57054B005A4257 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		71F3EB102211845F004C2CF3 /* ScrollableSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableSlider.swift; sourceTree = "<group>"; };
+		71F3EB12221186FD004C2CF3 /* MIT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MIT; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 		525099241BC3BE4200C508E8 /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				71F3EB102211845F004C2CF3 /* ScrollableSlider.swift */,
 				52F3A9D01BC7BE0B008A1243 /* Application.swift */,
 				525099251BC3BE4200C508E8 /* AppDelegate.swift */,
 				525099271BC3BE4200C508E8 /* ViewController.swift */,
@@ -76,6 +81,7 @@
 		71BBBBC41F56FC0B005A4257 /* Meta */ = {
 			isa = PBXGroup;
 			children = (
+				71F3EB12221186FD004C2CF3 /* MIT */,
 				71BBBBC51F56FC12005A4257 /* LICENSE */,
 				71BBBBC61F56FC12005A4257 /* README.md */,
 				71BBBBC91F57054B005A4257 /* Credits.rtf */,
@@ -143,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5250992A1BC3BE4200C508E8 /* Assets.xcassets in Resources */,
+				71F3EB13221186FD004C2CF3 /* MIT in Resources */,
 				71BBBBCA1F57054B005A4257 /* Credits.rtf in Resources */,
 				5250992D1BC3BE4200C508E8 /* Main.storyboard in Resources */,
 			);
@@ -158,6 +165,7 @@
 				52F3A9D11BC7BE0B008A1243 /* Application.swift in Sources */,
 				710ABA1020E6289F00F7AA0B /* PlaylistController.swift in Sources */,
 				525099281BC3BE4200C508E8 /* ViewController.swift in Sources */,
+				71F3EB112211845F004C2CF3 /* ScrollableSlider.swift in Sources */,
 				525099261BC3BE4200C508E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

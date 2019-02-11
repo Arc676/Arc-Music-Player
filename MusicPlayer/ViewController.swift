@@ -165,9 +165,10 @@ class ViewController: NSViewController, NSSoundDelegate {
 			if showFullPath.state == .off {
 				path = url.lastPathComponent.replacingOccurrences(of: "%20", with: " ")
 			}
-			playlistPopup.addItem(withTitle: path)
+			playlistPopup.menu?.addItem(NSMenuItem(title: path, action: nil, keyEquivalent: ""))
 		}
 		playlistPopup.selectItem(at: currentSongIndex)
+		playlistPopup.synchronizeTitleAndSelectedItem()
 	}
 
 	/**
