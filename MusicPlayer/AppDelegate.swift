@@ -2,9 +2,9 @@
 //  AppDelegate.swift
 //  MusicPlayer
 //
-//  Created by Alessandro Vinciguerra on 10/6/15.
+//  Created by Alessandro Vinciguerra on 2015-10-06.
 //	<alesvinciguerra@gmail.com>
-//Copyright (C) 2015-8 Arc676/Alessandro Vinciguerra
+//Copyright (C) 2015-9 Arc676/Alessandro Vinciguerra
 
 //This program is free software: you can redistribute it and/or modify
 //it under the terms of the GNU General Public License as published by
